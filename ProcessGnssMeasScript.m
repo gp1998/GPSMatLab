@@ -2,13 +2,13 @@
 % pseudoranges, C/No, and weighted least squares PVT solution
 %
 % you can run the data in pseudoranges log files provided for you: 
-prFileName = 'gnss_log_2018_09_24_01_17_27.txt'; %with duty cycling, no carrier phase
+prFileName = 'gnss_log_2018_09_23_21_53_37.txt'; %with duty cycling, no carrier phase
 % prFileName = 'pseudoranges_log_2016_08_22_14_45_50.txt'; %no duty cycling, with carrier phase
 % as follows
 % 1) copy everything from GitHub google/gps-measurement-tools/ to 
 %    a local directory on your machine
 % 2) change 'dirName = ...' to match the local directory you are using:
-dirName = 'F:\Research\IoT and Location\gps-measurement-tools\opensource\demoFiles';
+dirName = '/home/ping/GPSMatlab/GPSMatLab/demoFiles';
 % 3) run ProcessGnssMeasScript.m script file 
 param.llaTrueDegDegM = [];
 param.velDegPerSec = [];
