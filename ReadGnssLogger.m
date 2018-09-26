@@ -169,6 +169,10 @@ while ischar(line)
    if isempty(strfind(line,'Raw,'))
        continue %skip to next line
    end
+   [~,temp] = size(strfind(line,','));
+   if temp < 30
+       continue
+   end
    %Now 'line' contains the raw measurements header or data
    line = strrep(line,'Raw,',''); 
    line = strrep(line,'#',''); line = strrep(line,' ','');%remove '#' and spaces
