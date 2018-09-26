@@ -163,6 +163,18 @@ end
 % csv file "prs.csv" now contains a header row followed by numerical data
 %
 %But we'll do the same thing using Matlab, so people don't need grep/sed:
+textfileID = fopen(extendedFileName,'r');
+while ischar(line)
+   line = fgetl(textfileID);
+   if isempty(strfind(line,'Raw,'))
+       continue %skip to next line
+   else
+       break
+   end
+end
+[~,numFields] = size(strfind(line,','))
+fclose(textfileID);
+   
 csvfileID = fopen(csvFileName,'w');
 while ischar(line)
    line = fgetl(txtfileID);
@@ -170,7 +182,7 @@ while ischar(line)
        continue %skip to next line
    end
    [~,temp] = size(strfind(line,','));
-   if temp < 30
+   if temp < numFields
        continue
    end
    %Now 'line' contains the raw measurements header or data
