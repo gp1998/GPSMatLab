@@ -28,8 +28,8 @@ dataFilter{1,2}   = 'FullBiasNanos ~= 0';
 % dataFilter{end,2} = 'BiasUncertaintyNanos < 1e7'; 
 
 %keep only Svid 2
-% dataFilter{end+1,1} = 'Svid'; 
-% dataFilter{end,2}   = 'Svid==2';
+ dataFilter{end+1,1} = 'Svid'; 
+ dataFilter{end,2}   = 'Svid==31';
 
 %limit to GPS only:
 dataFilter{end+1,1} = 'ConstellationType'; 

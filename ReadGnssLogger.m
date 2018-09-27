@@ -63,11 +63,11 @@ end
 rawCsvFile = MakeCsv(dirName,fileName);
 [header,C] = ReadRawCsv(rawCsvFile);
 
-% %% apply dataFilter 
-% [bOk] = CheckDataFilter(dataFilter,header);
-% if ~bOk, return, end
-% [bOk,C] = FilterData(C,dataFilter,header);
-% if ~bOk, return, end
+%% apply dataFilter 
+[bOk] = CheckDataFilter(dataFilter,header);
+if ~bOk, return, end
+[bOk,C] = FilterData(C,dataFilter,header);
+if ~bOk, return, end
 
 %% pack data into gnssRaw structure
 [gnssRaw,missing] = PackGnssRaw(C,header);
@@ -172,7 +172,7 @@ while ischar(line)
        break
    end
 end
-[~,numFields] = size(strfind(line,','))
+[~,numFields] = size(strfind(line,','));
 fclose(textfileID);
    
 csvfileID = fopen(csvFileName,'w');
