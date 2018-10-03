@@ -4,13 +4,13 @@ clc;
 % pseudoranges, C/No, and weighted least squares PVT solution
 %
 % you can run the data in pseudoranges log files provided for you: 
-prFileName = '遮挡转圈.txt'; %with duty cycling, no carrier phase
+prFileName = 'gnss_log_2018_10_03_19_59_25.txt'; %with duty cycling, no carrier phase
 % prFileName = 'pseudoranges_log_2016_08_22_14_45_50.txt'; %no duty cycling, with carrier phase
 % as follows
 % 1) copy everything from GitHub google/gps-measurement-tools/ to 
 %    a local directory on your machine
 % 2) change 'dirName = ...' to match the local directory you are using:
-dirName = '/home/ping/GPSMatlab/GPSMatLab/demoFiles';
+dirName = '/home/ping/GPSMatLab/data_2018.10.03';
 % 3) run ProcessGnssMeasScript.m script file 
 param.llaTrueDegDegM = [];
 param.velDegPerSec = [];
@@ -27,7 +27,7 @@ param.velDegPerSec = [];
 %% parameters
 %param.llaTrueDegDegM = [];
 %enter true WGS84 lla, if you know it:
-param.llaTrueDegDegM = [30.756005, 103.9323138, 520.1];%Charleston Park Test Site
+param.llaTrueDegDegM = [55.8612870 -4.2395520 157.73];%Charleston Park Test Site
 param.velDegPerSec = 11.25;
 
 %% Set the data filter and Read log file
@@ -42,22 +42,22 @@ allGpsEph = GetNasaHourlyEphemeris(utcTime,dirName);
 if isempty(allGpsEph), return, end
 
 %% process raw measurements, compute pseudoranges:
-% [gnssMeas] = ProcessGnssMeas(gnssRaw);
-% [Aer]= GpsSvAer(gnssMeas,allGpsEph,param.llaTrueDegDegM);
-% h1 = figure;
-% [colors] = PlotPseudoranges(gnssMeas,prFileName);
-% h2 = figure;
-% difMaxMin = PlotDirCno(gnssMeas,Aer,prFileName,param.velDegPerSec,colors);
-% [accDegPer] = PlotAngAcc(difMaxMin,colors); 
-
-%% process raw measurements, compute pseudoranges and  put the data in 360 degrees:
 [gnssMeas] = ProcessGnssMeas(gnssRaw);
 [Aer]= GpsSvAer(gnssMeas,allGpsEph,param.llaTrueDegDegM);
 h1 = figure;
 [colors] = PlotPseudoranges(gnssMeas,prFileName);
 h2 = figure;
-difMaxMin = PlotDirCnoRound(gnssMeas,Aer,prFileName,param.velDegPerSec,colors);
+difMaxMin = PlotDirCno(gnssMeas,Aer,prFileName,param.velDegPerSec,colors);
 [accDegPer] = PlotAngAcc(difMaxMin,colors); 
+
+%% process raw measurements, compute pseudoranges and  put the data in 360 degrees:
+% [gnssMeas] = ProcessGnssMeas(gnssRaw);
+% [Aer]= GpsSvAer(gnssMeas,allGpsEph,param.llaTrueDegDegM);
+% h1 = figure;
+% [colors] = PlotPseudoranges(gnssMeas,prFileName);
+% h2 = figure;
+% difMaxMin = PlotDirCnoRound(gnssMeas,Aer,prFileName,param.velDegPerSec,colors);
+% [accDegPer] = PlotAngAcc(difMaxMin,colors); 
 %% plot pseudoranges and pseudorange rates
 % h1 = figure;
 % [colors] = PlotPseudoranges(gnssMeas,prFileName);

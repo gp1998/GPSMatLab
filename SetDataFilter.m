@@ -15,7 +15,7 @@ dataFilter{1,2}   = 'FullBiasNanos ~= 0';
 %you can create other filters in the same way ...
 %for example, suppose you want to remove Svid 23:
 % dataFilter{end+1,1} = 'Svid'; 
-% dataFilter{end,2}   = 'Svid ~= 23';
+% dataFilter{end,2}   = 'Svid ~= 1';
 % 
 %or suppose you want to keep only Svid 2,5,10, & 17
 % dataFilter{end,2} = 'Svid==2 | Svid==5 | Svid==10 | Svid==17';
@@ -28,12 +28,12 @@ dataFilter{1,2}   = 'FullBiasNanos ~= 0';
 % dataFilter{end,2} = 'BiasUncertaintyNanos < 1e7'; 
 
 %keep only Svid 2
- dataFilter{end+1,1} = 'Svid'; 
- dataFilter{end,2}   = 'Svid==31';
+%  dataFilter{end+1,1} = 'Svid'; 
+%  dataFilter{end,2}   = 'Svid==32';
 
 %limit to GPS only:
-dataFilter{end+1,1} = 'ConstellationType'; 
-dataFilter{end,2}   = 'ConstellationType==1'; 
+% dataFilter{end+1,1} = 'ConstellationType'; 
+% dataFilter{end,2}   = 'ConstellationType==1'; 
 %ConstellationType values are defined in Android HAL Documentation, gps.h, 
 %   typedef uint8_t                         GnssConstellationType;
 %   #define GNSS_CONSTELLATION_UNKNOWN      0
